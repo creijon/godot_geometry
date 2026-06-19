@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://due41dmk4gm8d" path="res://Scripts/Geo3D/Debug/DebugAABBAABB.cs" id="7_yanbf"]
 [ext_resource type="Script" uid="uid://d2iom1k0auy0n" path="res://Scripts/Geo3D/Debug/DebugPointTriangle.cs" id="8_kkmiy"]
 [ext_resource type="Script" uid="uid://dgwdcy3okq6hd" path="res://Scripts/Geo3D/Debug/DebugRayAABB.cs" id="9_xh0e3"]
+[ext_resource type="Script" uid="uid://x8cjvnw1qb62" path="res://Scripts/Utils/Tests/BitOpsTest.cs" id="13_kkmiy"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o8ehs"]
 
@@ -210,3 +211,6 @@ _edge = NodePath("../../edge1")
 script = ExtResource("5_lsm3y")
 _tri = NodePath("../../triangle3")
 _ray = NodePath("../../ray1")
+
+[node name="Node" type="Node" parent="." unique_id=53566584]
+script = ExtResource("13_kkmiy")
