@@ -24,7 +24,7 @@ namespace Geo3D
                 {
                     _ray._color = new Color(0.0f, 1.0f, 0.0f);
                     Vector3 hitPos = _ray._ray.Position(t);
-                    DrawAABB.Draw(-Vector3.One * 0.01f + hitPos, Vector3.One * 0.01f + hitPos, _ray._color, Transform3D.Identity);
+                    GeoDebug.Wireframe.Box(-Vector3.One * 0.1f + hitPos, Vector3.One * 0.1f + hitPos, _ray._color, Transform3D.Identity);
                 }
                 else
                 {
@@ -33,5 +33,4 @@ namespace Geo3D
             }
         }
     }
-
 }

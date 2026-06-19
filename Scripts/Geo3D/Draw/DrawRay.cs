@@ -31,10 +31,10 @@ namespace Geo3D
                 var end = _ray.origin + _ray.dir * _length;
                 var head = _ray.origin + _ray.dir * (_length - tip);
                 var offset = Transform.Basis.X * tip * 0.5f;
-                DebugDraw.DrawLine(_ray.origin, head, _color);
-                DebugDraw.DrawLine(head - offset, head + offset, _color);
-                DebugDraw.DrawLine(head - offset, end, _color);
-                DebugDraw.DrawLine(head + offset, end, _color);
+                GeoDebug.Wireframe.Line(_ray.origin, head, _color);
+                GeoDebug.Wireframe.Line(head - offset, head + offset, _color);
+                GeoDebug.Wireframe.Line(head - offset, end, _color);
+                GeoDebug.Wireframe.Line(head + offset, end, _color);
             }
         }
     }

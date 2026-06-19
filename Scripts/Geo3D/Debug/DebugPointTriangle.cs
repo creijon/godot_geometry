@@ -19,7 +19,7 @@ namespace Geo3D
 
                 var plane = _tri._tri.Plane();
 
-                DebugDraw.DrawLine(_point.GlobalPosition, plane.Project(_point.GlobalPosition), new Color(1.0f, 1.0f, 0.0f));
+                GeoDebug.Wireframe.Line(_point.GlobalPosition, plane.Project(_point.GlobalPosition), new Color(1.0f, 1.0f, 0.0f));
 
                 if (Intersect.Test(_point.GlobalPosition, _tri._tri))
                 {

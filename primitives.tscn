@@ -42,33 +42,36 @@ transform = Transform3D(0.99199855, -0.04946684, 0.11615489, -0.0076287724, 0.89
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 mesh = SubResource("SphereMesh_1hckd")
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1962162458]
+transform = Transform3D(0.6039038, -0.14419882, -0.78390497, 0.7970572, 0.10925466, 0.59393877, 0, -0.98349893, 0.18091401, 59.118626, 0, 63.12272)
+
 [node name="point" type="Node3D" parent="." unique_id=29384526]
 transform = Transform3D(1, 0, 0, 0, 0.91204864, 0.41008225, 0, -0.41008225, 0.91204864, -17.171206, -2.1020303, -89.69398)
 
 [node name="ray1" type="Node3D" parent="." unique_id=1909568418]
-transform = Transform3D(1, 0, 0, 0, 0.97776496, 0.20970389, 0, -0.20970389, 0.97776496, 7.1195784, 1.2703104, -22.004387)
+transform = Transform3D(1, 0, 0, 0, 0.97776496, 0.20970389, 0, -0.20970389, 0.97776496, 8.703935, 1.2703104, -20.44204)
 script = ExtResource("1_ipvmo")
 _color = Color(0, 1, 0, 1)
 _length = 5.0
 
 [node name="ray2" type="Node3D" parent="." unique_id=1429038818]
-transform = Transform3D(1, 0, 0, 0, 0.91204864, 0.41008225, 0, -0.41008225, 0.91204864, 15.392273, -2.1020303, -34.28821)
+transform = Transform3D(0.70710677, 0.28997195, -0.64491576, 0, 0.91204864, 0.41008225, 0.70710677, -0.28997195, 0.64491576, 21.732212, -2.1020303, -54.996166)
 script = ExtResource("1_ipvmo")
-_color = Color(1, 1, 0, 1)
+_color = Color(0, 1, 0, 1)
 _length = 5.0
 
 [node name="edge1" type="Node3D" parent="." unique_id=1335679845 node_paths=PackedStringArray("_v0", "_v1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.1152267, 0, -1.4109964)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84.89463, 0, -59.333374)
 script = ExtResource("1_o8ehs")
 _v0 = NodePath("e10")
 _v1 = NodePath("e11")
 _color = Color(0, 1, 0, 1)
 
 [node name="e10" type="Node3D" parent="edge1" unique_id=163739101]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 89.20529, 9.286488, -90.16017)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5533295, 9.286488, -30.24324)
 
 [node name="e11" type="Node3D" parent="edge1" unique_id=1119598789]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100.911316, 0.6234827, -22.589352)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1527023, 0.6234827, 37.32758)
 
 [node name="edge2" type="Node3D" parent="." unique_id=191268219 node_paths=PackedStringArray("_v0", "_v1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.2304535, 0, -2.8219929)
@@ -188,8 +191,10 @@ script = ExtResource("8_kkmiy")
 _point = NodePath("../../point")
 _tri = NodePath("../../triangle4")
 
-[node name="ray-aabb" type="Node3D" parent="intersection_tests" unique_id=919141055]
+[node name="ray-aabb" type="Node3D" parent="intersection_tests" unique_id=919141055 node_paths=PackedStringArray("_ray", "_aabb")]
 script = ExtResource("9_xh0e3")
+_ray = NodePath("../../ray2")
+_aabb = NodePath("../../aabb1")
 
 [node name="triangle-aabb" type="Node3D" parent="intersection_tests" unique_id=458180114 node_paths=PackedStringArray("_tri", "_aabb")]
 script = ExtResource("4_2qaun")
@@ -205,6 +210,3 @@ _edge = NodePath("../../edge1")
 script = ExtResource("5_lsm3y")
 _tri = NodePath("../../triangle3")
 _ray = NodePath("../../ray1")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1962162458]
-transform = Transform3D(0.6039038, -0.14419882, -0.7839049, 0.7970572, 0.10925466, 0.5939387, 0, -0.98349893, 0.18091401, 59.118626, 0, 63.12272)

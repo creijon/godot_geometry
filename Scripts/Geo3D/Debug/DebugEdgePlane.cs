@@ -25,7 +25,7 @@ namespace Geo3D
                     _edge._color = new Color(0.0f, 1.0f, 0.0f);
                     Vector3 intersection = _edge._edge.v0.Lerp(_edge._edge.v1, t);
 
-                    DebugDraw.DrawLine(intersection, intersection + plane.n, _edge._color);
+                    GeoDebug.Wireframe.Line(intersection, intersection + plane.n, _edge._color);
                 }
                 else
                 {

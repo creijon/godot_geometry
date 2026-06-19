@@ -33,9 +33,9 @@ namespace Geo3D
             {
                 Reset();
 
-                DebugDraw.DrawLine(_tri.v0, _tri.v1, _color);
-                DebugDraw.DrawLine(_tri.v1, _tri.v2, _color);
-                DebugDraw.DrawLine(_tri.v2, _tri.v0, _color);
+                GeoDebug.Wireframe.Line(_tri.v0, _tri.v1, _color);
+                GeoDebug.Wireframe.Line(_tri.v1, _tri.v2, _color);
+                GeoDebug.Wireframe.Line(_tri.v2, _tri.v0, _color);
             }
         }
     }

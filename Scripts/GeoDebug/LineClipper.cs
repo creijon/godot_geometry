@@ -1,5 +1,7 @@
 using Godot;
 
+namespace GeoDebug
+{
 public class LineClipper
 {
     private const int INSIDE = 0; // 0000
@@ -20,15 +22,8 @@ public class LineClipper
         return code;
     }
 
-    /// <summary>
     /// Clips a line segment (p0, p1) against a rectangle (rectMin, rectMax)
     /// Based on the Cohen-Sutherland algorithm.
-    /// </summary>
-    /// <param name="p0"></param>
-    /// <param name="p1"></param>
-    /// <param name="rectMin"></param>
-    /// <param name="rectMax"></param>
-    /// <returns>True if the line is visibly inside the rectangle; otherwise false.</returns>
     public static bool ClipAgainstRectangle(ref Vector2 p0, ref Vector2 p1, Vector2 rectMin, Vector2 rectMax)
     {
         int outcode0 = ComputeOutCode(p0, rectMin, rectMax);
@@ -89,12 +84,7 @@ public class LineClipper
         }
     }
 
-    /// <summary>
     /// Clips a line segment (p0, p1) against a plane (planeN, planeD).
-    /// </summary>
-    /// <param name="p0"></param>
-    /// <param name="p1"></param>
-    /// <returns>true if the both points are behind the plane; otherwise false</returns>
     public static bool ClipAgainstPlane(ref Vector3 p0, ref Vector3 p1, Vector3 planeN, float planeD)
     {
         var d0 = planeN.Dot(p0) - planeD;
@@ -102,13 +92,13 @@ public class LineClipper
 
         if (d0 <= 0.0f && d1 <= 0.0f)
         {
-            // Both points are behind the plane, no need to clip.
+            // Both points are in front of the plane, no need to clip.
             return true;
         }
 
         if (d0 > 0.0f && d1 > 0.0f)
         {
-            // Both points are in front of the plane, reject.
+            // Both points are behind the plane, reject.
             return false;
         }
 
@@ -116,7 +106,7 @@ public class LineClipper
         var t = d0 / (d0 - d1);
         var p = p0 + t * (p1 - p0);
 
-        // Set the point that is in front of the plane to the intesection point.
+        // Set the point that is behind the plane to the intesection point.
         if (d0 > 0.0f)
         {
             p0 = p;
@@ -128,5 +118,7 @@ public class LineClipper
 
         return true;
     }
+
+}
 
 }

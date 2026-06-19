@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-DebugDraw="*uid://c3tnxsd6gw06l"
+Wireframe="*uid://dgcuf06u3d8pl"
 
 [dotnet]
 

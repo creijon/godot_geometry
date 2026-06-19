@@ -30,7 +30,7 @@ namespace Geo3D
 
                 var p = _ray._ray.Position(t);
                 var plane = _tri._tri.Plane();
-                DebugDraw.DrawLine(p, p + plane.n, _ray._color);
+                GeoDebug.Wireframe.Line(p, p + plane.n, _ray._color);
             }
         }
     }

@@ -36,7 +36,7 @@ namespace Geo3D
 
                 if (_edge != null)
                 {
-                    DebugDraw.DrawLine(_edge.v0, _edge.v1, _color);
+                    GeoDebug.Wireframe.Line(_edge.v0, _edge.v1, _color);
                 }
             }
         }

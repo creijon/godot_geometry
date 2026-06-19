@@ -26,7 +26,7 @@ namespace Geo3D
                     _edge._color = new Color(0.0f, 1.0f, 0.0f);
                     var plane = _tri._tri.Plane();
                     var p = _edge._edge.v0.Lerp(_edge._edge.v1, t);
-                    DebugDraw.DrawLine(p, p + plane.n * 3.0f, _edge._color);
+                    GeoDebug.Wireframe.Line(p, p + plane.n * 3.0f, _edge._color);
                 }
                 else
                 {

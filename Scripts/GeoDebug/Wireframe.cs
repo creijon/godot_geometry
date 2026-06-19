@@ -1,25 +1,55 @@
 using Godot;
 using System.Collections.Generic;
 
+namespace GeoDebug
+{
 [Tool]
-public partial class DebugDraw : Node2D
+public partial class Wireframe : Node2D
 {
     // Draw a line between two world-space points with the current color
-    public static void DrawLine(Vector3 p0, Vector3 p1)
+    public static void Line(Vector3 p0, Vector3 p1)
     {
-        _instance.lines.Add(new Line { p0 = p0, p1 = p1, color = _instance.currentColor });
+        _instance.segments.Add(new Segment { p0 = p0, p1 = p1, color = _instance.currentColor });
     }
 
     // Draw a line between two world-space points in a defined color
-    public static void DrawLine(Vector3 p0, Vector3 p1, Color color)
+    public static void Line(Vector3 p0, Vector3 p1, Color color)
     {
         _instance.currentColor = color;
-        DrawLine(p0, p1);
+        Line(p0, p1);
+    }
+
+    public static void Box(Vector3 min, Vector3 max, Color color, Transform3D transform)
+    {
+        Vector3 v000 = transform * min;
+        Vector3 v001 = transform * new Vector3(max.X, min.Y, min.Z);
+        Vector3 v010 = transform * new Vector3(min.X, max.Y, min.Z);
+        Vector3 v011 = transform * new Vector3(max.X, max.Y, min.Z);
+        Vector3 v100 = transform * new Vector3(min.X, min.Y, max.Z);
+        Vector3 v101 = transform * new Vector3(max.X, min.Y, max.Z);
+        Vector3 v110 = transform * new Vector3(min.X, max.Y, max.Z);
+        Vector3 v111 = transform * max;
+
+        _instance.currentColor = color;
+        Line(v000, v001);
+        Line(v001, v011);
+        Line(v011, v010);
+        Line(v010, v000);
+
+        Line(v100, v101);
+        Line(v101, v111);
+        Line(v111, v110);
+        Line(v110, v100);
+
+        Line(v000, v100);
+        Line(v001, v101);
+        Line(v010, v110);
+        Line(v011, v111);
     }
 
     public override void _Process(double delta)
     {
-        if (lines.Count > 0)
+        if (segments.Count > 0)
 		{
             QueueRedraw();
         }
@@ -47,10 +77,10 @@ public partial class DebugDraw : Node2D
         var near_plane_n = camera.GlobalBasis.Z;
         var near_plane_d = near_plane_n.Dot(camera.GlobalPosition) - camera.Near;
 
-        for (int i = 0; i < lines.Count; i++)
+        foreach(var segment in segments)
         {
-            var p0 = lines[i].p0;
-            var p1 = lines[i].p1;
+            var p0 = segment.p0;
+            var p1 = segment.p1;
 
             // Clip the line against the camera's near plane.
             if (!LineClipper.ClipAgainstPlane(ref p0, ref p1, near_plane_n, near_plane_d))
@@ -70,27 +100,28 @@ public partial class DebugDraw : Node2D
                 continue;
             }
             
-            DrawLine(s0, s1, lines[i].color, -1, true);
+            DrawLine(s0, s1, segment.color, -1, true);
         }
 
-        lines.Clear();
+        segments.Clear();
     }
 
-    static DebugDraw _instance;
+    static Wireframe _instance;
 
-    DebugDraw()
+    Wireframe()
     {
         _instance = this;
     }
 
-    struct Line
+    struct Segment
     {
         public Vector3 p0;
         public Vector3 p1;
         public Color color;
     }
 
-    List<Line> lines = new List<Line>();
+    List<Segment> segments = new List<Segment>();
     Color currentColor = Colors.White;
+}
 
 }
