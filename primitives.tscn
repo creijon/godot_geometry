@@ -1,0 +1,210 @@
+[gd_scene format=3 uid="uid://dwjmmcvu4vcfp"]
+
+[ext_resource type="Script" uid="uid://ds0qu8jsgeina" path="res://Scripts/Geo3D/Draw/DrawAABB.cs" id="1_fn0yn"]
+[ext_resource type="Script" uid="uid://bauddmmjuitxa" path="res://Scripts/Geo3D/Draw/DrawRay.cs" id="1_ipvmo"]
+[ext_resource type="Script" uid="uid://bvmd3nkdrrmvw" path="res://Scripts/Geo3D/Draw/DrawEdge.cs" id="1_o8ehs"]
+[ext_resource type="Script" uid="uid://bpe083254vc6i" path="res://Scripts/Geo3D/Draw/DrawTriangle.cs" id="3_fumx3"]
+[ext_resource type="Script" uid="uid://s7uurodurt6w" path="res://Scripts/Geo3D/Debug/DebugTriangleAABB.cs" id="4_2qaun"]
+[ext_resource type="Script" uid="uid://doj3lgts211u1" path="res://Scripts/Geo3D/Debug/DebugEdgeAABB.cs" id="4_i8ynr"]
+[ext_resource type="Script" uid="uid://dxbkjgdplw0sd" path="res://Scripts/Geo3D/Debug/DebugTriangleRay.cs" id="5_lsm3y"]
+[ext_resource type="Script" uid="uid://bxq5yebd6rr5f" path="res://Scripts/Geo3D/Debug/DebugTriangleEdge.cs" id="6_c1dqv"]
+[ext_resource type="Script" uid="uid://6jglbrscbpd5" path="res://Scripts/Geo3D/Debug/DebugEdgePlane.cs" id="7_1hckd"]
+[ext_resource type="Script" uid="uid://due41dmk4gm8d" path="res://Scripts/Geo3D/Debug/DebugAABBAABB.cs" id="7_yanbf"]
+[ext_resource type="Script" uid="uid://d2iom1k0auy0n" path="res://Scripts/Geo3D/Debug/DebugPointTriangle.cs" id="8_kkmiy"]
+[ext_resource type="Script" uid="uid://dgwdcy3okq6hd" path="res://Scripts/Geo3D/Debug/DebugRayAABB.cs" id="9_xh0e3"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o8ehs"]
+
+[sub_resource type="Sky" id="Sky_fn0yn"]
+sky_material = SubResource("ProceduralSkyMaterial_o8ehs")
+
+[sub_resource type="Environment" id="Environment_o8ehs"]
+background_mode = 2
+sky = SubResource("Sky_fn0yn")
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_fn0yn"]
+
+[sub_resource type="Compositor" id="Compositor_fumx3"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_1hckd"]
+
+[node name="root" type="Node3D" unique_id=588467311]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1181296312]
+environment = SubResource("Environment_o8ehs")
+camera_attributes = SubResource("CameraAttributesPractical_fn0yn")
+compositor = SubResource("Compositor_fumx3")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=469856481]
+transform = Transform3D(0.99199855, -0.04946684, 0.11615489, -0.0076287724, 0.8948748, 0.4462521, -0.12601876, -0.44356754, 0.8873371, 17.963589, 34.660767, 37.112755)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=827472647]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("SphereMesh_1hckd")
+
+[node name="point" type="Node3D" parent="." unique_id=29384526]
+transform = Transform3D(1, 0, 0, 0, 0.91204864, 0.41008225, 0, -0.41008225, 0.91204864, -17.171206, -2.1020303, -89.69398)
+
+[node name="ray1" type="Node3D" parent="." unique_id=1909568418]
+transform = Transform3D(1, 0, 0, 0, 0.97776496, 0.20970389, 0, -0.20970389, 0.97776496, 7.1195784, 1.2703104, -22.004387)
+script = ExtResource("1_ipvmo")
+_color = Color(0, 1, 0, 1)
+_length = 5.0
+
+[node name="ray2" type="Node3D" parent="." unique_id=1429038818]
+transform = Transform3D(1, 0, 0, 0, 0.91204864, 0.41008225, 0, -0.41008225, 0.91204864, 15.392273, -2.1020303, -34.28821)
+script = ExtResource("1_ipvmo")
+_color = Color(1, 1, 0, 1)
+_length = 5.0
+
+[node name="edge1" type="Node3D" parent="." unique_id=1335679845 node_paths=PackedStringArray("_v0", "_v1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.1152267, 0, -1.4109964)
+script = ExtResource("1_o8ehs")
+_v0 = NodePath("e10")
+_v1 = NodePath("e11")
+_color = Color(0, 1, 0, 1)
+
+[node name="e10" type="Node3D" parent="edge1" unique_id=163739101]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 89.20529, 9.286488, -90.16017)
+
+[node name="e11" type="Node3D" parent="edge1" unique_id=1119598789]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100.911316, 0.6234827, -22.589352)
+
+[node name="edge2" type="Node3D" parent="." unique_id=191268219 node_paths=PackedStringArray("_v0", "_v1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.2304535, 0, -2.8219929)
+script = ExtResource("1_o8ehs")
+_v0 = NodePath("e20")
+_v1 = NodePath("e21")
+_color = Color(1, 0, 0, 1)
+
+[node name="e20" type="Node3D" parent="edge2" unique_id=1732199093]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.4793, 9.286472, -170.2892)
+
+[node name="e21" type="Node3D" parent="edge2" unique_id=1020338299]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.58082, 0.6234827, -134.91257)
+
+[node name="edge3" type="Node3D" parent="." unique_id=1993948199 node_paths=PackedStringArray("_v0", "_v1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.416519, 0, -2.8219929)
+script = ExtResource("1_o8ehs")
+_v0 = NodePath("e30")
+_v1 = NodePath("e31")
+_color = Color(0, 1, 0, 1)
+
+[node name="e30" type="Node3D" parent="edge3" unique_id=659628552]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2375946, -13.707429, -87.13095)
+
+[node name="e31" type="Node3D" parent="edge3" unique_id=1040433353]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.83947, 0.6235132, -154.10284)
+
+[node name="triangle1" type="Node3D" parent="." unique_id=280551898 node_paths=PackedStringArray("_verts")]
+transform = Transform3D(0.6802605, 0, 0.7329705, 0, 1, 0, -0.7329705, 0, 0.6802605, -116.65561, 0, -55.152225)
+script = ExtResource("3_fumx3")
+_verts = [NodePath("t10"), NodePath("t11"), NodePath("t12")]
+_color = Color(1, 1, 0, 1)
+
+[node name="t10" type="Node3D" parent="triangle1" unique_id=230090030]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.413417, -0.1878066, 5.525486)
+
+[node name="t11" type="Node3D" parent="triangle1" unique_id=976557158]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.070485, -0.1878066, -6.7804985)
+
+[node name="t12" type="Node3D" parent="triangle1" unique_id=294135370]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.577352, 6.3069177, 5.099621)
+
+[node name="triangle2" type="Node3D" parent="." unique_id=1993718263 node_paths=PackedStringArray("_verts")]
+transform = Transform3D(0.13511032, 0, -0.9908305, 0, 1, 0, 0.9908305, 0, 0.13511032, 90.25006, -0.32352066, -32.485985)
+script = ExtResource("3_fumx3")
+_verts = [NodePath("t20"), NodePath("t21"), NodePath("t22")]
+_color = Color(1, 1, 0, 1)
+
+[node name="t20" type="Node3D" parent="triangle2" unique_id=354450078]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.413417, -0.1878066, 5.525486)
+
+[node name="t21" type="Node3D" parent="triangle2" unique_id=1934656665]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.070485, -0.1878066, -6.7804985)
+
+[node name="t22" type="Node3D" parent="triangle2" unique_id=1159113934]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.577352, 6.3069177, 5.099621)
+
+[node name="triangle3" type="Node3D" parent="." unique_id=729347832 node_paths=PackedStringArray("_verts")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3265076, 0, -13.526222)
+script = ExtResource("3_fumx3")
+_verts = [NodePath("t30"), NodePath("t31"), NodePath("t32")]
+_color = Color(1, 1, 0, 1)
+
+[node name="t30" type="Node3D" parent="triangle3" unique_id=1256807768]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.413417, -0.1878066, 5.525486)
+
+[node name="t31" type="Node3D" parent="triangle3" unique_id=550424771]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.070485, -0.1878066, -6.7804985)
+
+[node name="t32" type="Node3D" parent="triangle3" unique_id=159458845]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.577352, 6.3069177, 5.099621)
+
+[node name="triangle4" type="Node3D" parent="." unique_id=1056895976 node_paths=PackedStringArray("_verts")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.58712, -8.793768, -87.86629)
+script = ExtResource("3_fumx3")
+_verts = [NodePath("t40"), NodePath("t41"), NodePath("t42")]
+_color = Color(0, 1, 0, 1)
+
+[node name="t40" type="Node3D" parent="triangle4" unique_id=207985220]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.413417, -0.1878066, 5.525486)
+
+[node name="t41" type="Node3D" parent="triangle4" unique_id=295635254]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.070485, -0.1878066, -6.7804985)
+
+[node name="t42" type="Node3D" parent="triangle4" unique_id=1729631639]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.577352, 6.3069177, 5.099621)
+
+[node name="aabb1" type="Node3D" parent="." unique_id=1986181574]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 5, -1.8989878, 7.6293945e-06, -45.158863)
+script = ExtResource("1_fn0yn")
+color = Color(1, 0, 0, 1)
+
+[node name="aabb2" type="Node3D" parent="." unique_id=1813639938]
+transform = Transform3D(18.507088, 0, 0, 0, 12.377423, 0, 0, 0, 25, 19.500687, 0, -129.6373)
+script = ExtResource("1_fn0yn")
+color = Color(1, 0, 0, 1)
+
+[node name="intersection_tests" type="Node" parent="." unique_id=482282778]
+
+[node name="aabb-aabb" type="Node3D" parent="intersection_tests" unique_id=1158073681 node_paths=PackedStringArray("_aabb1", "_aabb2")]
+script = ExtResource("7_yanbf")
+_aabb1 = NodePath("../../aabb1")
+_aabb2 = NodePath("../../aabb2")
+
+[node name="edge-aabb" type="Node3D" parent="intersection_tests" unique_id=374146002 node_paths=PackedStringArray("_edge", "_aabb")]
+script = ExtResource("4_i8ynr")
+_edge = NodePath("../../edge2")
+_aabb = NodePath("../../aabb2")
+
+[node name="edge-plane" type="Node3D" parent="intersection_tests" unique_id=885734684 node_paths=PackedStringArray("_tri", "_edge")]
+script = ExtResource("7_1hckd")
+_tri = NodePath("../../triangle4")
+_edge = NodePath("../../edge3")
+
+[node name="point-triangle" type="Node3D" parent="intersection_tests" unique_id=294245579 node_paths=PackedStringArray("_point", "_tri")]
+script = ExtResource("8_kkmiy")
+_point = NodePath("../../point")
+_tri = NodePath("../../triangle4")
+
+[node name="ray-aabb" type="Node3D" parent="intersection_tests" unique_id=919141055]
+script = ExtResource("9_xh0e3")
+
+[node name="triangle-aabb" type="Node3D" parent="intersection_tests" unique_id=458180114 node_paths=PackedStringArray("_tri", "_aabb")]
+script = ExtResource("4_2qaun")
+_tri = NodePath("../../triangle1")
+_aabb = NodePath("../../aabb1")
+
+[node name="triangle-edge" type="Node3D" parent="intersection_tests" unique_id=2013200365 node_paths=PackedStringArray("_tri", "_edge")]
+script = ExtResource("6_c1dqv")
+_tri = NodePath("../../triangle2")
+_edge = NodePath("../../edge1")
+
+[node name="triangle-ray" type="Node3D" parent="intersection_tests" unique_id=249934385 node_paths=PackedStringArray("_tri", "_ray")]
+script = ExtResource("5_lsm3y")
+_tri = NodePath("../../triangle3")
+_ray = NodePath("../../ray1")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1962162458]
+transform = Transform3D(0.6039038, -0.14419882, -0.7839049, 0.7970572, 0.10925466, 0.5939387, 0, -0.98349893, 0.18091401, 59.118626, 0, 63.12272)
